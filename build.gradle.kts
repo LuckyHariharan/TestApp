@@ -5,14 +5,15 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        val hiltVersion = "2.38.1"
+        val hiltVersion = "2.48"
         classpath("com.google.dagger:hilt-android-gradle-plugin:$hiltVersion")
         // Other classpath dependencies
-    }
+       }
 }
 
 plugins {
-    id("com.android.application") version "7.3.0" apply false
+//    id("dagger.hilt.android.plugin") version "2.48" apply false
+    id("com.android.application") version "8.2.2" apply false
     id("org.jetbrains.kotlin.android") version "1.9.0" apply false
 }
 
