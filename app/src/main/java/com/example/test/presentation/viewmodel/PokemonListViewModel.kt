@@ -7,11 +7,15 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.test.domain.model.Pokemon
 import com.example.test.domain.repository.PokemonRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 // presentation/viewmodel/PokemonListViewModel.kt
-class PokemonListViewModel @ViewModelInject constructor(
-    private val repository: PokemonRepository) : ViewModel() {
+@HiltViewModel
+class PokemonListViewModel @Inject constructor(
+    private val repository: PokemonRepository
+) : ViewModel() {
     annotation class ViewModelInject
 
     private val _pokemonList = MutableLiveData<List<Pokemon>>()
