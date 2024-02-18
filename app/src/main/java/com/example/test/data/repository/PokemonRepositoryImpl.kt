@@ -5,6 +5,7 @@ import com.example.test.domain.repository.PokemonRepository
 import com.example.test.data.local.PokemonDao
 import com.example.test.data.remote.PokemonApiService
 import com.example.test.domain.model.Pokemon
+import com.example.test.domain.model.PokemonApiResponse
 import retrofit2.Response
 
 class PokemonRepositoryImpl(
@@ -12,7 +13,7 @@ class PokemonRepositoryImpl(
     private val pokemonDao: PokemonDao
 ) : PokemonRepository {
 
-    override suspend fun getPokemonFromAPI(): Response<List<Pokemon>> {
+    override suspend fun getPokemonFromAPI(): Response<PokemonApiResponse> {
         Log.d("Repository", "Fetching Pokemon from API")
         val response = apiService.getPokemon()
         if (response.isSuccessful) {

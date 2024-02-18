@@ -23,23 +23,16 @@ private val repository: PokemonRepository
     init {
         loadPokemon()
     }
-
     private fun loadPokemon() = viewModelScope.launch {
         try {
-            Log.d("ViewModel", "Loading Pokemon data")
-            val pokemonFromDb = repository.getPokemonFromDB()
-            if (pokemonFromDb.isNotEmpty()) {
-                _pokemonList.postValue(pokemonFromDb)
+            val response = repository.getPokemonFromAPI()
+            if (response.isSuccessful && response.body() != null) {
+                val pokemonApiResponse = response.body()!!
+                val pokemonFromApi = pokemonApiResponse.results
+                _pokemonList.postValue(pokemonFromApi)
+                // Save to DB or other operations
             } else {
-                val response = repository.getPokemonFromAPI()
-                if (response.isSuccessful && response.body() != null) {
-                    // Extract the body from the response
-                    val pokemonFromApi = response.body()!!
-                    _pokemonList.postValue(pokemonFromApi)
-                    repository.savePokemon(pokemonFromApi)
-                } else {
-                    Log.e("ViewModel", "API call failed: ${response.errorBody()}")
-                }
+                Log.e("ViewModel", "API call failed: ${response.errorBody()}")
             }
         } catch (e: Exception) {
             Log.e("ViewModel", "Error loading Pokemon", e)

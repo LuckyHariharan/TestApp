@@ -11,3 +11,11 @@ data class Pokemon(
     val imageUrl: String, // or just 'url' if that's what you receive from the API
     val url: String
 )
+
+// Response model to match the API structure
+data class PokemonApiResponse(
+    val count: Int,
+    val next: String?,
+    val previous: String?,
+    val results: List<Pokemon>
+)
