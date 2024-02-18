@@ -8,5 +8,6 @@ import androidx.room.PrimaryKey
 data class Pokemon(
     @PrimaryKey val id: Int,
     val name: String,
-    val imageUrl: String
+    val imageUrl: String, // or just 'url' if that's what you receive from the API
+    val url: String
 )
