@@ -11,6 +11,11 @@
 #-keepclassmembers class fqcn.of.javascript.interface.for.webview {
 #   public *;
 #}
+# Keep Hilt classes
+-keep class dagger.hilt.** { *; }
+-keep class dagger.hilt.android.** { *; }
+-keep @dagger.hilt.android.internal.managers.ViewComponentManager$FragmentContextWrapper class *
+
 
 # Uncomment this to preserve the line number information for
 # debugging stack traces.
