@@ -15,7 +15,7 @@ class PokemonRepositoryImpl(
 
     override suspend fun getPokemonFromAPI(): Response<PokemonApiResponse> {
         Log.d("Repository", "Fetching Pokemon from API")
-        val response = apiService.getPokemon()
+        val response = apiService.getPokemon(limit = 1000)
         if (response.isSuccessful) {
             Log.d("Repository", "Pokemon fetched successfully: ${response.body()}")
         } else {
