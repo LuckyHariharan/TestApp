@@ -24,10 +24,11 @@ class PokemonListViewModel @Inject constructor(
     init {
         loadPokemon()
     }
-
     private fun loadPokemon() {
         viewModelScope.launch {
             try {
+                Log.d("ViewModel", "Loading Pokemon data")
+
                 val pokemonFromDb = repository.getPokemonFromDB()
                 if (pokemonFromDb.isNotEmpty()) {
                     _pokemonList.postValue(pokemonFromDb)

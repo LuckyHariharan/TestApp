@@ -1,5 +1,6 @@
 package com.example.test.data.repository
 
+import android.util.Log
 import com.example.test.domain.repository.PokemonRepository
 import com.example.test.data.local.PokemonDao
 import com.example.test.data.remote.PokemonApiService
@@ -13,6 +14,8 @@ class PokemonRepositoryImpl(
 ) : PokemonRepository {
 
     override suspend fun getPokemonFromAPI(): List<Pokemon> {
+        Log.d("Repository", "Fetching Pokemon from API")
+
         // Make a call to the API and return the result
         val response = apiService.getPokemon()
         if (response.isSuccessful) {
@@ -25,10 +28,14 @@ class PokemonRepositoryImpl(
     }
 
     override suspend fun getPokemonFromDB(): List<Pokemon> {
+        Log.d("Repository", "Fetching Pokemon from DB")
+
         return pokemonDao.getAllPokemon()
     }
 
     override suspend fun savePokemon(pokemon: List<Pokemon>) {
+        Log.d("Repository", "Saving Pokemon to DB")
+
         pokemonDao.insertAll(pokemon)
     }
 }
