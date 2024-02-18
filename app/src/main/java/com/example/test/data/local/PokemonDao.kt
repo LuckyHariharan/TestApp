@@ -10,7 +10,7 @@ import com.example.test.domain.model.Pokemon
 @Dao
 interface PokemonDao {
     @Query("SELECT * FROM pokemon")
-    fun getAllPokemon(): List<Pokemon>
+    suspend fun getAllPokemon(): List<Pokemon>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAll(pokemon: List<Pokemon>): Unit // or List<Long> if you need the IDs
