@@ -3,7 +3,7 @@ package com.example.test.domain.model
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-// domain/model/Pokemon.kt
+// domain or data layer
 @Entity(tableName = "pokemon")
 data class Pokemon(
     @PrimaryKey val id: Int,
@@ -13,9 +13,3 @@ data class Pokemon(
 )
 
 // Response model to match the API structure
-data class PokemonApiResponse(
-    val count: Int,
-    val next: String?,
-    val previous: String?,
-    val results: List<Pokemon>
-)

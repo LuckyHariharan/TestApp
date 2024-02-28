@@ -9,12 +9,10 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
-import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.example.test.presentation.viewmodel.PokemonListViewModel
 import com.example.test.ui.theme.TestTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -33,6 +31,8 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
+
+                    //remove conditional logic
                     if (checkPermission()) {
                         // Correct usage of hiltViewModel()
                         PokemonListScreen(viewModel = hiltViewModel())
@@ -44,6 +44,9 @@ class MainActivity : ComponentActivity() {
         }
     }
 
+    // remove unnecessary chcecks
+// apps need permissions and users can set permissions for camera wifi etc.
+    // clean up the code we dont need to check these permission because of l4 android manifest
     private fun checkPermission(): Boolean {
         return ContextCompat.checkSelfPermission(
             this,

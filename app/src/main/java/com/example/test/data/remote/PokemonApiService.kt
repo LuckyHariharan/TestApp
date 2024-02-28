@@ -1,7 +1,7 @@
 package com.example.test.data.remote
 
+import com.example.test.data.model.PokemonApiResponse
 import com.example.test.domain.model.Pokemon
-import com.example.test.domain.model.PokemonApiResponse
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query

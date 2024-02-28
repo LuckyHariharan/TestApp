@@ -1,4 +1,4 @@
-package com.example.test.presentation.viewmodel
+package com.example.test.domain
 
 import android.util.Log
 import androidx.lifecycle.LiveData
@@ -6,7 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.test.domain.model.Pokemon
-import com.example.test.domain.repository.PokemonRepository
+import com.example.test.data.repository.PokemonRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -25,7 +25,12 @@ private val repository: PokemonRepository
     }
     private fun loadPokemon() = viewModelScope.launch {
         try {
+            // should be repository.getPokemon()
             val response = repository.getPokemonFromAPI()
+            // Check if the response is successful should be done in data layer
+            // here to quickly spin up
+            // view model does not need to know where data comes from
+            // shouldnt need to check if succesful or if non null
             if (response.isSuccessful && response.body() != null) {
                 val pokemonApiResponse = response.body()!!
                 val pokemonFromApi = pokemonApiResponse.results
