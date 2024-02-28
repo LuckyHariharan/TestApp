@@ -7,7 +7,7 @@ import com.example.test.domain.model.Pokemon
 // data/local/AppDatabase.kt
 
 // room database setup for my Pokemon app
-@Database(entities = [Pokemon::class], version = 1, exportSchema = false)
+@Database(entities = [Pokemon::class], version = 2, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun pokemonDao(): PokemonDao
 }

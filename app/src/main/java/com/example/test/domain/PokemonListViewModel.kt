@@ -26,19 +26,15 @@ private val repository: PokemonRepository
     private fun loadPokemon() = viewModelScope.launch {
         try {
             // should be repository.getPokemon()
-            val response = repository.getPokemonFromAPI()
+            val response = repository.getPokemon()
             // Check if the response is successful should be done in data layer
             // here to quickly spin up
             // view model does not need to know where data comes from
             // shouldnt need to check if succesful or if non null
-            if (response.isSuccessful && response.body() != null) {
-                val pokemonApiResponse = response.body()!!
-                val pokemonFromApi = pokemonApiResponse.results
-                _pokemonList.postValue(pokemonFromApi)
+
+                _pokemonList.postValue(response)
                 // Save to DB or other operations
-            } else {
-                Log.e("ViewModel", "API call failed: ${response.errorBody()}")
-            }
+
         } catch (e: Exception) {
             Log.e("ViewModel", "Error loading Pokemon", e)
         }

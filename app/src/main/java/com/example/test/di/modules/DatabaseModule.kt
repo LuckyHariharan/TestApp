@@ -19,7 +19,7 @@ object DatabaseModule {
         return Room.databaseBuilder(
             context,
             AppDatabase::class.java, "pokemon-database"
-        ).build()
+        ).fallbackToDestructiveMigration() .build()
     }
 
     @Provides
