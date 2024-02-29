@@ -27,7 +27,7 @@ private val repository: PokemonRepository
     private fun loadPokemon() = viewModelScope.launch {
         try {
             // should be repository.getPokemon()
-            val response: List<Pokemon> = repository.getPokemon()
+            val response = repository.getPokemon()
             // Check if the response is successful should be done in data layer
             // here to quickly spin up
             // view model does not need to know where data comes from

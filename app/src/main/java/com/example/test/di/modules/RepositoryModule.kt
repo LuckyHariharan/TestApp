@@ -1,8 +1,8 @@
 package com.example.test.di.modules
 
+import PokemonRepositoryImpl
 import com.example.test.data.local.PokemonDao
 import com.example.test.data.remote.PokemonApiService
-import com.example.test.data.repository.PokemonRepositoryImpl
 import com.example.test.data.repository.PokemonRepository
 import dagger.Module
 import dagger.Provides

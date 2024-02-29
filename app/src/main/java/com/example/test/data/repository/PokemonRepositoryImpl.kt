@@ -1,4 +1,5 @@
-package com.example.test.data.repository
+import com.example.test.data.repository.PokemonRepository
+
 
 import android.util.Log
 import com.example.test.data.local.PokemonDao
