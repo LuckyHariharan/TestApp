@@ -32,51 +32,10 @@ class MainActivity : ComponentActivity() {
                     color = MaterialTheme.colorScheme.background
                 ) {
 
-                    //remove conditional logic
-                    if (checkPermission()) {
-                        // Correct usage of hiltViewModel()
-                        PokemonListScreen(viewModel = hiltViewModel())
-                    } else {
-                        requestPermission()
-                    }
+
+                    PokemonListScreen(viewModel = hiltViewModel())
+
                 }
-            }
-        }
-    }
-
-    // remove unnecessary chcecks
-// apps need permissions and users can set permissions for camera wifi etc.
-    // clean up the code we dont need to check these permission because of l4 android manifest
-    private fun checkPermission(): Boolean {
-        return ContextCompat.checkSelfPermission(
-            this,
-            Manifest.permission.INTERNET
-        ) == PackageManager.PERMISSION_GRANTED
-    }
-
-    private fun requestPermission() {
-        ActivityCompat.requestPermissions(
-            this,
-            arrayOf(Manifest.permission.INTERNET),
-            INTERNET_PERMISSION_REQUEST_CODE
-        )
-    }
-
-    // Override onRequestPermissionsResult to handle permission request result
-    override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<out String>,
-        grantResults: IntArray
-    ) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-
-        if (requestCode == INTERNET_PERMISSION_REQUEST_CODE) {
-            if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                // Permission granted, reload the content
-                recreate()
-            } else {
-                // Permission denied, show a message or take appropriate action
-                // You may disable features that require INTERNET permission
             }
         }
     }

@@ -1,5 +1,6 @@
 package com.example.test.domain
 
+import android.annotation.SuppressLint
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -26,7 +27,7 @@ private val repository: PokemonRepository
     private fun loadPokemon() = viewModelScope.launch {
         try {
             // should be repository.getPokemon()
-            val response = repository.getPokemon()
+            val response: List<Pokemon> = repository.getPokemon()
             // Check if the response is successful should be done in data layer
             // here to quickly spin up
             // view model does not need to know where data comes from
