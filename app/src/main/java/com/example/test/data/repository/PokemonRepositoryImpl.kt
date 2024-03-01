@@ -10,17 +10,16 @@ class PokemonRepositoryImpl(
 ) : PokemonRepository {
 
     override suspend fun getPokemon(): List<Pokemon> {
-        Log.d("Repository", "Fetching Pokemon from API")
-        val response = apiService.getPokemon(limit = 1000)
-        if (response.isSuccessful) {
-            Log.d("Repository", "Fetched ${response.body()?.results?.size ?: 0} Pokemon from API")
-            savePokemon(response.body()?.results ?: emptyList())
-        } else {
-            Log.e("Repository", "Failed to fetch Pokemon: ${response.code()}")
+        return try {
+            val response = apiService.getPokemon(limit = 1000)
+            if (response.isSuccessful) {
+                response.body()?.results ?: emptyList()
+            } else {
+                emptyList()
+            }
+        } catch (e: Exception) {
+            emptyList()
         }
-        val dbPokemon = getPokemonFromDB()
-        Log.d("Repository", "Fetched ${dbPokemon.size} Pokemon from DB")
-        return dbPokemon
     }
 
     private suspend fun getPokemonFromDB(): List<Pokemon> {

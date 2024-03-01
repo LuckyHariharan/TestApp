@@ -15,7 +15,7 @@ import javax.inject.Inject
 // presentation/viewmodel/PokemonListViewModel.kt
 @HiltViewModel
 class PokemonListViewModel @Inject constructor(
-private val repository: PokemonRepository
+    private val repository: PokemonRepository
 ) : ViewModel() {
 
     private val _pokemonList = MutableLiveData<List<Pokemon>>()
@@ -24,20 +24,14 @@ private val repository: PokemonRepository
     init {
         loadPokemon()
     }
+
     private fun loadPokemon() = viewModelScope.launch {
         try {
-            // should be repository.getPokemon()
-            val response = repository.getPokemon()
-            // Check if the response is successful should be done in data layer
-            // here to quickly spin up
-            // view model does not need to know where data comes from
-            // shouldnt need to check if succesful or if non null
-
-                _pokemonList.postValue(response)
-                // Save to DB or other operations
-
+            val response = repository.getPokemon() // This call is already suspend, runs on a background thread
+            _pokemonList.postValue(response)
         } catch (e: Exception) {
             Log.e("ViewModel", "Error loading Pokemon", e)
         }
     }
 }
+
