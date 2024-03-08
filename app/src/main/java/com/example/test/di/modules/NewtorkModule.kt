@@ -1,6 +1,5 @@
 package com.example.test.di.modules
 
-import com.example.test.data.remote.InstrumentApiService
 import com.example.test.data.remote.PokemonApiService
 import dagger.Module
 import dagger.Provides
@@ -36,11 +35,5 @@ object NetworkModule {
     @Provides
     fun providePokemonApiService(retrofit: Retrofit): PokemonApiService {
         return retrofit.create(PokemonApiService::class.java)
-    }
-
-// allow us to inject instrument api service into com
-    @Provides
-    fun provideInstrumentApiService(retrofit: Retrofit): InstrumentApiService {
-        return retrofit.create(InstrumentApiService::class.java)
     }
 }

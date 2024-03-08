@@ -13,7 +13,6 @@ import androidx.compose.ui.Modifier
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.example.test.presentation.screens.InstrumentScreen
 import com.example.test.ui.theme.TestTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -34,7 +33,8 @@ class MainActivity : ComponentActivity() {
                 ) {
 
 
-                    InstrumentScreen(viewModel = hiltViewModel())
+                    PokemonListScreen(viewModel = hiltViewModel())
+
                 }
             }
         }
